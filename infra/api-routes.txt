@@ -1,0 +1,20 @@
+# Routes for the booking-service HTTP API (one per line: METHOD PATH).
+# Lab 7 style: every route is listed explicitly; anything else gets 404 from API Gateway.
+# /internal/* routes are NOT here: other services reach them with a direct Lambda invoke.
+GET /api/health
+POST /api/bookings
+GET /api/bookings/mine
+GET /api/bookings
+DELETE /api/bookings/{bookingId}
+POST /api/waitlist
+GET /api/waitlist/mine
+DELETE /api/waitlist/{classId}
+GET /api/notifications/mine
+# CORS pre-flight (the browser asks OPTIONS before POST/PUT/PATCH/DELETE)
+OPTIONS /api/bookings
+OPTIONS /api/bookings/mine
+OPTIONS /api/bookings/{bookingId}
+OPTIONS /api/notifications/mine
+OPTIONS /api/waitlist
+OPTIONS /api/waitlist/mine
+OPTIONS /api/waitlist/{classId}

@@ -1,0 +1,38 @@
+### booking-service on your PC (Lab 4) - start it first:  cd services/booking-service && npm run dev
+### Open in VS Code with the REST Client extension and click "Send Request".
+### For requests that need a token: sign in with identity/requests.http first and paste the accessToken.
+
+@baseUrl = http://localhost:3003
+@token = PASTE-ACCESS-TOKEN-HERE
+
+### Health -> 200, runtime pc
+GET {{baseUrl}}/api/health
+
+@classId = PASTE-A-classId-FROM-GET-/api/classes
+
+### Book a class as a member -> 201 (409 CLASS_FULL / ALREADY_BOOKED, 403 MEMBER_SUSPENDED)
+POST {{baseUrl}}/api/bookings
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "classId": "{{classId}}" }
+
+### My bookings -> 200
+GET {{baseUrl}}/api/bookings/mine
+Authorization: Bearer {{token}}
+
+### Without a token -> 401
+GET {{baseUrl}}/api/bookings/mine
+
+### Join the waitlist (only when the class is full) -> 201 or 409 SEATS_AVAILABLE
+POST {{baseUrl}}/api/waitlist
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "classId": "{{classId}}" }
+
+### Internal endpoint without the service key -> 403 INTERNAL_ONLY
+POST {{baseUrl}}/internal/booking-counts
+Content-Type: application/json
+
+{ "classIds": [] }

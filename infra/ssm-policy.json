@@ -1,0 +1,6 @@
+{
+  "maxActiveBookings": 5,
+  "bookingWindowDays": 7,
+  "lateCancelHours": 2,
+  "maxWaitlist": 20
+}

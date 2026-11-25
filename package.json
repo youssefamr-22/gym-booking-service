@@ -1,0 +1,21 @@
+{
+  "name": "gym-booking-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Booking & Waitlist service (owner: Youssef Amr Sayed, 248183): bookings, late-cancel policy, waitlist, notifications",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "zip": "esbuild lambda.js --bundle --platform=node --target=node20 --outfile=dist/lambda.js --log-level=warning && cd dist && bestzip ../lambda.zip lambda.js",
+    "events": "node ../../infra/local/run-events.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "gym-shared": "file:../../shared"
+  },
+  "devDependencies": {
+    "bestzip": "^2.2.1",
+    "esbuild": "^0.24.0"
+  }
+}
